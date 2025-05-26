@@ -1,0 +1,44 @@
+﻿@model List<ProductCartTest.Models.ViewModels.ProductViewModel>
+@{
+    ViewData["Title"] = "Products List";
+}
+
+<h2>Products List</h2>
+
+<div class="my-4 float-end">
+    <a asp-action="Create" class="btn btn-primary">Add New Product</a>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>SN</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Created Date</th>
+            <th>Updated Date</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.ProductName</td>
+                <td>@product.ProductDescription</td>
+                <td>@product.FormattedPrice</td>
+                <td>@product.Stock</td>
+                <td>@product.FormattedCreatedDate</td>
+                <td>@product.FormattedUpdatedDate</td>
+                <td class="text-center">
+                    <a asp-action="Edit" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
